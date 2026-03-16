@@ -23,121 +23,376 @@ Fonts:
 }
 
 body {
-  font-family: Arial, sans-serif;
+  font-family: "Avenir Next", Avenir, "Proxima Nova", sans-serif;
   margin: 0;
-  padding: 30px;
-  background-color: #f0f0f0;
-  color: #333;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: clamp(14px, 3vw, 24px);
+  background:
+    radial-gradient(circle at top, rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0) 35%),
+    linear-gradient(180deg, #8bd1cb 0%, #2e9df7 55%, #dff6ff 100%);
+  color: #183b56;
 }
 
 .container {
-  max-width: 750px;
-  margin: 50px auto;
-  background-color: #fff;
-  padding: 40px;
-  border-radius: 10px;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  width: min(100%, 860px);
+  background: rgba(119, 168, 187, 0.92);
+  padding: clamp(20px, 4vw, 32px);
+  border-radius: 24px;
+  box-shadow: 0 20px 50px rgba(22, 93, 146, 0.18);
+  border: 4px solid rgba(255, 255, 255, 0.6);
+}
+
+.top-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.brand-logo {
+  display: block;
+  width: min(100%, 260px);
+  height: auto;
+  margin: 0 auto 18px;
 }
 
 h1 {
   text-align: center;
-  font-size: 30px;
-  font-weight: bold;
-  margin-bottom: 20px;
-  color: #333;
+  font-size: clamp(2.2rem, 4vw, 3.2rem);
+  font-weight: 800;
+  margin: 0;
+  color: #0f4c81;
+  letter-spacing: 0.03em;
 }
 
-h1 img {
-  height: 50px;
-  margin-right: 15px;
-  display: block;
+.eyebrow {
+  text-align: center;
+  margin: 0 0 12px;
+  font-size: 0.95rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #159a48;
 }
 
 .game-instructions {
-  font-size: 18px;
-  margin-bottom: 30px;
+  font-size: 1.05rem;
+  margin: 24px auto 0;
   text-align: center;
+  max-width: 600px;
 }
 
 .stats {
   display: flex;
-  justify-content: space-around;
-  margin-bottom: 30px;
-  background-color: #f5f5f5;
-  padding: 15px 0;
-  border-radius: 8px;
+  justify-content: center;
+  gap: 18px;
+  margin-top: 28px;
+  flex-wrap: wrap;
+  width: 100%;
 }
 
-.stats p {
-  margin: 0;
-  font-size: 18px;
-  font-weight: bold;
-  color: #333;
+.stat-card {
+  min-width: 180px;
+  flex: 1 1 180px;
+  max-width: 240px;
+  padding: 18px;
+  border-radius: 18px;
+  background: linear-gradient(180deg, #ffffff 0%, #eff9ff 100%);
+  border: 2px solid #b9e4ff;
+  text-align: center;
+  box-shadow: 0 8px 18px rgba(46, 157, 247, 0.08);
+}
+
+.stat-label,
+.stat-note {
+  display: block;
+}
+
+.stat-label {
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #4c7b9b;
+}
+
+.stat-value {
+  display: block;
+  font-size: 2.2rem;
+  font-weight: 800;
+  margin: 8px 0;
+  color: #0f4c81;
+}
+
+.stat-note {
+  color: #5f819c;
+  font-size: 0.95rem;
 }
 
 .game-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 15px;
-  margin: 0 auto;
-  max-width: 500px;
+  gap: 16px;
+  justify-content: center;
+  width: fit-content;
+  max-width: 100%;
+  margin: 32px auto 0;
 }
 
 .grid-cell {
-  background-color: #e8e8e8;
-  border-radius: 8px;
-  aspect-ratio: 1;
+  width: clamp(105px, 18vw, 135px);
+  height: clamp(105px, 18vw, 135px);
+  background: linear-gradient(180deg, #ffffff 0%, #eef9ff 100%);
+  border: 3px solid #8bd1cb;
+  border-radius: 22px;
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  transition: background-color 0.3s;
+  transition: transform 0.2s ease, background-color 0.2s ease, box-shadow 0.2s ease;
   position: relative;
   overflow: hidden;
 }
 
-.water-can-wrapper {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 70px;
-  height: 70px;
-  /* Ensure the wrapper is properly centered */
+.grid-cell:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 20px rgba(46, 157, 247, 0.14);
 }
 
-.water-can {
-  width: 100%;
-  height: 100%;
-  background-image: url('img/water-can.png');
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center;
-  cursor: pointer;
-  border-radius: 50%;
-  animation: popUp 0.5s cubic-bezier(0.17, 0.67, 0.34, 2);
-  transform-origin: center; /* Ensure scaling happens from the center */
+.grid-cell.has-droplet {
+  background: linear-gradient(180deg, #f8feff 0%, #dff3ff 100%);
+  border-color: #2e9df7;
+  box-shadow: 0 0 0 5px rgba(46, 157, 247, 0.12);
 }
 
-@keyframes popUp {
-  0% {
-    transform: scale(0.5); /* Start scaling from the center */
+.grid-cell.has-dirty-droplet {
+  background: linear-gradient(180deg, #fff2ef 0%, #ffe1db 100%);
+  border-color: #f16061;
+  box-shadow: 0 0 0 5px rgba(241, 96, 97, 0.14);
+}
+
+.grid-cell.collected {
+  background: #ffc907;
+  border-color: #ff902a;
+}
+
+.grid-cell.dirty-hit {
+  background: #f5402c;
+  border-color: #8a2219;
+}
+
+.droplet {
+  font-size: 3.4rem;
+  line-height: 1;
+  user-select: none;
+  animation: pop-up 0.22s ease-out;
+}
+
+.dirty-droplet {
+  width: 64%;
+  height: 64%;
+  object-fit: contain;
+  user-select: none;
+  pointer-events: none;
+  animation: pop-up 0.22s ease-out;
+}
+
+@keyframes pop-up {
+  from {
+    transform: scale(0.55);
+    opacity: 0.4;
   }
-  100% {
-    transform: scale(1); /* End scaling at full size */
+
+  to {
+    transform: scale(1);
+    opacity: 1;
   }
 }
 
 
 button {
-  background-color: #4CAF50;
+  background: linear-gradient(135deg, #ffc907 0%, #ff902a 100%);
   color: white;
   border: none;
-  padding: 12px 24px;
-  font-size: 16px;
-  border-radius: 8px;
+  padding: 14px 28px;
+  font-size: 1rem;
+  font-weight: 700;
+  border-radius: 999px;
   cursor: pointer;
   display: block;
-  margin: 30px auto 0;
-  transition: background-color 0.2s;
+  margin: 32px auto 0;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  box-shadow: 0 12px 25px rgba(255, 144, 42, 0.28);
+}
+
+.button-row {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+#start-game,
+#reset-game {
+  margin: 32px 0 0;
+}
+
+#reset-game {
+  background: linear-gradient(135deg, #2e9df7 0%, #159a48 100%);
+  box-shadow: 0 12px 25px rgba(46, 157, 247, 0.24);
+}
+
+button:hover {
+  transform: translateY(-2px);
+}
+
+button:disabled {
+  cursor: not-allowed;
+  opacity: 0.75;
+  transform: none;
+}
+
+.message {
+  min-height: 28px;
+  margin: 18px 0 0;
+  text-align: center;
+  font-size: 1rem;
+  color: #0f4c81;
+  padding: 14px 18px;
+  border-radius: 16px;
+  transition: background-color 0.2s ease, color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.message-win {
+  background: linear-gradient(180deg, #f2ffe9 0%, #dcf8d7 100%);
+  color: #116a35;
+  box-shadow: 0 10px 20px rgba(79, 203, 83, 0.18);
+  border: 2px solid rgba(21, 154, 72, 0.22);
+}
+
+.message-loss {
+  background: linear-gradient(180deg, #fff6eb 0%, #ffe8cc 100%);
+  color: #8a4b10;
+  box-shadow: 0 10px 20px rgba(255, 144, 42, 0.18);
+  border: 2px solid rgba(255, 144, 42, 0.22);
+}
+
+.confetti-layer {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 999;
+}
+
+.confetti-piece {
+  position: absolute;
+  top: -20px;
+  width: 10px;
+  height: 16px;
+  border-radius: 2px;
+  opacity: 0.95;
+  animation-name: confetti-fall;
+  animation-timing-function: ease-in;
+  animation-fill-mode: forwards;
+}
+
+@keyframes confetti-fall {
+  0% {
+    transform: translateY(0) rotate(0deg);
+    opacity: 1;
+  }
+
+  100% {
+    transform: translateY(110vh) rotate(720deg);
+    opacity: 0;
+  }
+}
+
+@media (max-width: 820px) {
+  .stats {
+    gap: 14px;
+  }
+
+  .stat-card {
+    max-width: none;
+  }
+
+  .game-grid {
+    gap: 14px;
+  }
+}
+
+@media (max-width: 600px) {
+  body {
+    align-items: flex-start;
+  }
+
+  .container {
+    padding: 24px 18px;
+    border-radius: 20px;
+  }
+
+  .brand-logo {
+    width: min(100%, 220px);
+    margin-bottom: 14px;
+  }
+
+  .eyebrow {
+    font-size: 0.82rem;
+    line-height: 1.5;
+  }
+
+  .game-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+    margin-top: 24px;
+  }
+
+  .grid-cell {
+    width: min(38vw, 140px);
+    height: min(38vw, 140px);
+    border-radius: 18px;
+  }
+
+  .droplet {
+    font-size: 2.9rem;
+  }
+
+  .dirty-droplet {
+    width: 62%;
+    height: 62%;
+  }
+
+  button {
+    width: 100%;
+    max-width: 320px;
+  }
+
+  .button-row {
+    gap: 10px;
+  }
+
+  .message {
+    font-size: 0.95rem;
+  }
+}
+
+@media (max-width: 400px) {
+  .container {
+    padding: 20px 14px;
+  }
+
+  .stats {
+    gap: 12px;
+  }
+
+  .stat-card {
+    min-width: 100%;
+  }
+
+  .grid-cell {
+    width: min(40vw, 124px);
+    height: min(40vw, 124px);
+  }
 }

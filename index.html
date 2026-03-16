@@ -8,15 +8,36 @@
 </head>
 <body>
   <div class="container">
-    <h1>Water Quest</h1>
-    <p class="game-instructions">Collect 20 items to complete the game!</p>
-    <div class="stats">
-      <p>Cans Collected: <span id="current-cans">0</span></p>
-      <p>Time Left: <span id="timer">30</span>s</p>
-    </div>
-    <div id="achievements" class="achievement"></div>
-    <div class="game-grid"></div>
-    <button id="start-game">Start Game</button>
+    <header class="top-section">
+      <img class="brand-logo" src="img/cw_logo_horizontal.png" alt="charity: water logo">
+      <h1>Water Quest</h1>
+      <p class="eyebrow">Catch the clean water drops before time runs out.</p>
+      <div class="stats">
+        <div class="stat-card">
+          <span class="stat-label">Timer</span>
+          <span id="timer" class="stat-value">60</span>
+          <span class="stat-note">seconds left</span>
+        </div>
+        <div class="stat-card">
+          <span class="stat-label">Score</span>
+          <span id="score" class="stat-value">0</span>
+          <span class="stat-note">drops collected</span>
+        </div>
+      </div>
+      <p class="game-instructions">Press Start Game, then click the 💧 as it jumps around the grid.</p>
+    </header>
+
+    <main>
+      <div class="game-grid" aria-label="Water Quest game board"></div>
+    </main>
+
+    <section class="bottom-section">
+      <div class="button-row">
+        <button id="start-game" type="button">Start Game</button>
+        <button id="reset-game" type="button">Reset</button>
+      </div>
+      <p id="message" class="message" aria-live="polite">Press Start Game to begin your water quest.</p>
+    </section>
   </div>
   <script src="script.js"></script>
 </body>
